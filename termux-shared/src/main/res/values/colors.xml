@@ -3,7 +3,7 @@
     <color name="background_markdown_code_inline">#1F000000</color>
     <color name="background_markdown_code_block">#0F000000</color>
 
-    <color name="black">#FF000000</color>
+    <color name="black">#2e3440</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="red_400">#FF0000</color>
@@ -18,6 +18,6 @@
     <color name="red_error">#DC143C</color>
     <color name="red_error_link">#FC143C</color>
 
-    <color name="blue_link_light">#0969DA</color>
-    <color name="blue_link_dark">#58A6FF</color>
+    <color name="blue_link_light">#5e81ac</color>
+    <color name="blue_link_dark">#5e81ac</color>
 </resources>

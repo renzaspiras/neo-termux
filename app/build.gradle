@@ -13,8 +13,8 @@ ext {
 }
 
 android {
-    compileSdkVersion project.properties.compileSdkVersion.toInteger()
-    ndkVersion = System.getenv("JITPACK_NDK_VERSION") ?: project.properties.ndkVersion
+    compileSdk 30
+    ndkVersion '23.1.7779620'
     def appVersionName = System.getenv("TERMUX_APP_VERSION_NAME") ?: ""
     def apkVersionTag = System.getenv("TERMUX_APK_VERSION_TAG") ?: ""
     def splitAPKsForDebugBuilds = System.getenv("TERMUX_SPLIT_APKS_FOR_DEBUG_BUILDS") ?: "1"
@@ -110,9 +110,6 @@ android {
         }
     }
 
-    lintOptions {
-        disable 'ProtectedPermissions'
-    }
 
     testOptions {
         unitTests {
@@ -124,6 +121,10 @@ android {
         jniLibs {
             useLegacyPackaging true
         }
+    }
+    namespace 'com.termux'
+    lint {
+        disable 'ProtectedPermissions'
     }
 
     applicationVariants.all { variant ->
@@ -183,6 +184,7 @@ def downloadBootstrap(String arch, String expectedChecksum, String version) {
     }
 
     def remoteUrl = "https://github.com/termux/termux-packages/releases/download/bootstrap-" + version + "/bootstrap-" + arch + ".zip"
+    //def remoteUrl = "http://127.0.0.1:5500/zips" +  "/bootstrap-" + arch + ".zip"
     logger.quiet("Downloading " + remoteUrl + " ...")
 
     file.parentFile.mkdirs()
@@ -194,13 +196,20 @@ def downloadBootstrap(String arch, String expectedChecksum, String version) {
     out << digestStream
     out.close()
 
+
+
     def checksum = new BigInteger(1, digest.digest()).toString(16)
     while (checksum.length() < 64) { checksum = "0" + checksum }
     if (checksum != expectedChecksum) {
         file.delete()
         throw new GradleException("Wrong checksum for " + remoteUrl + ": expected: " + expectedChecksum + ", actual: " + checksum)
     }
+    
+
+
+
 }
+
 
 clean {
     doLast {
@@ -209,6 +218,8 @@ clean {
         tree.each { it.delete() }
     }
 }
+
+
 
 task downloadBootstraps() {
     doLast {
@@ -219,7 +230,8 @@ task downloadBootstraps() {
             downloadBootstrap("arm", "6459a786acbae50d4c8a36fa1c3de6a4dd2d482572f6d54f73274709bd627325", version)
             downloadBootstrap("i686", "919d212b2f19e08600938db4079e794e947365022dbfd50ac342c50fcedcd7be", version)
             downloadBootstrap("x86_64", "61b02fdc03ea4f5d9da8d8cf018013fdc6659e6da6cbf44e9b24d1c623580b89", version)
-        } else if (packageVariant == "apt-android-5") {
+        }
+        else if (packageVariant == "apt-android-5") {
             def version = "2022.04.28-r6" + "+" + packageVariant
             downloadBootstrap("aarch64", "913609d439415c828c5640be1b0561467e539cb1c7080662decaaca2fb4820e7", version)
             downloadBootstrap("arm", "26bfb45304c946170db69108e5eb6e3641aad751406ce106c80df80cad2eccf8", version)

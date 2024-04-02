@@ -4,35 +4,43 @@
     android:id="@+id/activity_termux_root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="#4c566a"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red_400"
+        android:drawableLeft="@drawable/ic_service_notification" />
 
     <RelativeLayout
         android:id="@+id/activity_termux_root_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:layout_marginHorizontal="3dp"
         android:layout_marginVertical="0dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
-            android:layout_alignParentTop="true"
+            android:layout_height="match_parent"
             android:layout_above="@+id/terminal_toolbar_view_pager"
-            android:layout_height="match_parent">
+            android:layout_alignParentTop="true">
 
             <com.termux.view.TerminalView
                 android:id="@+id/terminal_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:autofillHints="password"
                 android:defaultFocusHighlightEnabled="false"
                 android:focusableInTouchMode="true"
+                android:importantForAutofill="no"
                 android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
                 android:scrollbars="vertical"
-                android:importantForAutofill="no"
-                android:autofillHints="password"
                 tools:ignore="UnusedAttribute" />
 
             <LinearLayout
@@ -40,24 +48,25 @@
                 android:layout_width="240dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
+                android:background="?attr/termuxActivityDrawerBackground"
                 android:choiceMode="singleChoice"
+                android:descendantFocusability="blocksDescendants"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
-                android:descendantFocusability="blocksDescendants"
-                android:orientation="vertical"
-                android:background="?attr/termuxActivityDrawerBackground">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <ImageButton
                         android:id="@+id/settings_button"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_settings"
                         android:background="@null"
                         android:contentDescription="@string/action_open_settings"
+                        android:src="@drawable/ic_settings"
                         app:tint="?attr/termuxActivityDrawerImageTint" />
                 </LinearLayout>
 
@@ -96,13 +105,20 @@
 
         </androidx.drawerlayout.widget.DrawerLayout>
 
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/terminal_toolbar_view_pager"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="37.5dp"
+            android:layout_alignParentBottom="true"
             android:background="@color/black"
-            android:layout_alignParentBottom="true" />
+            android:visibility="gone"
+            android:fontFamily="@font/fira_mono"
+            >
+
+
+
+        </androidx.viewpager.widget.ViewPager>
 
     </RelativeLayout>
 
@@ -110,6 +126,7 @@
         android:id="@+id/activity_termux_bottom_space_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:fontFamily="@font/fira_mono"
         android:background="@android:color/transparent" />
 
 </com.termux.app.terminal.TermuxActivityRootView>

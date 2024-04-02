@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.termux"
     android:installLocation="internalOnly"
-    android:sharedUserId="${TERMUX_PACKAGE_NAME}"
     android:sharedUserLabel="@string/shared_user_label">
+    <!--android:sharedUserId="${TERMUX_PACKAGE_NAME}"/-->
 
     <uses-feature
         android:name="android.hardware.touchscreen"
@@ -230,6 +229,9 @@
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 
