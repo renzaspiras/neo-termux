@@ -130,7 +130,6 @@
             android:name=".app.api.file.FileShareReceiverActivity"
             android:exported="true"
             android:targetActivity=".app.api.file.FileReceiverActivity">
-
             <!-- Accept multiple file types when sending. -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
