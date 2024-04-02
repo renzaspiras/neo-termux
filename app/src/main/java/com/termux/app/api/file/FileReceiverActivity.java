@@ -1,11 +1,13 @@
+// Do not remove it: it is the main directory
 package com.termux.app.api.file;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.OpenableColumns;
-import android.util.Patterns;
+// Understanding each imports, so we understand the flow of the entire code ~ 4/3/2024 - 4:38 AM
+    import android.content.Context;
+    import android.content.Intent;
+    import android.database.Cursor;
+    import android.net.Uri;
+    import android.provider.OpenableColumns;
+    import android.util.Patterns;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 
+// Functions
 public class FileReceiverActivity extends AppCompatActivity {
 
     static final String TERMUX_RECEIVEDIR = TermuxConstants.TERMUX_FILES_DIR_PATH + "/home/downloads";
