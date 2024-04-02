@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="internalOnly"
     android:sharedUserLabel="@string/shared_user_label">
-    <!--android:sharedUserId="${TERMUX_PACKAGE_NAME}"/-->
+
+    <!--
+    * Removing this tag:
+        Pros: Removing this, in order to avoid device architecture error
+        Cons: You are now unable to use other Termux External Apps such as {Tasker, Float Us, API Access, Widget , Styling, and others...}
+        [Why Still Remove it?: Compatability is more important, than having extensive features.... Still looking forward in making built in features...]
+    <android:sharedUserId="${TERMUX_PACKAGE_NAME}"/-->
 
     <uses-feature
         android:name="android.hardware.touchscreen"
