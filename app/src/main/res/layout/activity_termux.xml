@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#4c566a"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/side_bar_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red_400"
-        android:drawableLeft="@drawable/ic_service_notification" />
+        android:drawableLeft="@drawable/ic_service_notification"
+        android:textColor="@color/white"
+        />
 
     <RelativeLayout
         android:id="@+id/activity_termux_root_relative_layout"
@@ -41,7 +42,9 @@
                 android:importantForAutofill="no"
                 android:scrollbarThumbVertical="@drawable/terminal_scroll_shape"
                 android:scrollbars="vertical"
+                android:background="@color/grey_900"
                 tools:ignore="UnusedAttribute" />
+
 
             <LinearLayout
                 android:id="@+id/left_drawer"
