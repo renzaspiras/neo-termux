@@ -70,16 +70,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.Arrays;
 
-/**
- * A terminal emulator activity.
- * <p/>
- * See
- * <ul>
- * <li>http://www.mongrel-phones.com.au/default/how_to_make_a_local_service_and_bind_to_it_in_android</li>
- * <li>https://code.google.com/p/android/issues/detail?id=6426</li>
- * </ul>
- * about memory leaks.
- */
+
 public final class TermuxActivity extends AppCompatActivity implements ServiceConnection {
 
     /**
@@ -251,7 +242,7 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
 
         setNewSessionButtonView();
 
-        setToggleKeyboardView();
+        //setToggleKeyboardView(); --> YAGNI
 
         registerForContextMenu(mTerminalView);
 
@@ -290,8 +281,21 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
 
     }
 
+    //access the drawer banana
     public void session_setter(){
-        Toast.makeText(TermuxActivity.this, "Side Bar Button Clicked", Toast.LENGTH_SHORT).show();
+        View leftDrawer = findViewById(R.id.left_drawer);
+        if (leftDrawer.getVisibility() == View.VISIBLE) {
+            // If the view is visible, make it invisible
+            leftDrawer.setVisibility(View.INVISIBLE);
+        } else {
+            // If the view is invisible or gone, make it visible
+            leftDrawer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    // For debugging purposes only
+    public void lazyToast(String msg){
+        Toast.makeText(TermuxActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -356,7 +360,7 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         removeTermuxActivityRootViewGlobalLayoutListener();
 
         unregisterTermuxActivityBroadcastReceiver();
-        getDrawer().closeDrawers();
+        //R.id.left_drawer;
     }
 
     @Override
@@ -597,6 +601,7 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         });
     }
 
+    /* YAGNI
     private void setToggleKeyboardView() {
         findViewById(R.id.toggle_keyboard_button).setOnClickListener(v -> {
             mTermuxTerminalViewClient.onToggleSoftKeyboardRequest();
@@ -608,6 +613,8 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
             return true;
         });
     }
+
+     */
 
 
 
