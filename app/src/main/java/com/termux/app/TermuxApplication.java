@@ -1,7 +1,14 @@
 package com.termux.app;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import android.app.Application;
 import android.content.Context;
+import android.widget.Button;
+import android.widget.Toast;
+import android.view.View;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.termux.BuildConfig;
 import com.termux.shared.errors.Error;

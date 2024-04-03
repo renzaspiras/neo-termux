@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.autofill.AutofillManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -278,6 +279,19 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         // Send the {@link TermuxConstants#BROADCAST_TERMUX_OPENED} broadcast to notify apps that Termux
         // app has been opened.
         TermuxUtils.sendTermuxOpenedBroadcast(this);
+
+        /*
+        Since the new Gestural Navigation Bar feature, the old feature is harder to access,
+        Rather than using the old 3 button navigation bar, we will add a new feature, that allows
+        gestural nav bar user to access the session side bar
+        */
+        Button side_bar_session = findViewById(R.id.side_bar_button);
+        side_bar_session.setOnClickListener(v -> session_setter());
+
+    }
+
+    public void session_setter(){
+        Toast.makeText(TermuxActivity.this, "Side Bar Button Clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override

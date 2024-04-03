@@ -2,12 +2,12 @@
 package com.termux.app.api.file;
 
 // Understanding each imports, so we understand the flow of the entire code ~ 4/3/2024 - 4:38 AM
-    import android.content.Context;
-    import android.content.Intent;
-    import android.database.Cursor;
-    import android.net.Uri;
-    import android.provider.OpenableColumns;
-    import android.util.Patterns;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.OpenableColumns;
+import android.util.Patterns;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
