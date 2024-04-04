@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +14,12 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,8 +33,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+
 import com.termux.R;
 import com.termux.app.api.file.FileReceiverActivity;
+import com.termux.app.terminal.Inject.Core;
 import com.termux.app.terminal.TermuxActivityRootView;
 import com.termux.app.terminal.TermuxTerminalSessionActivityClient;
 import com.termux.app.terminal.io.TermuxTerminalExtraKeys;
@@ -68,10 +76,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import java.security.Key;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public final class TermuxActivity extends AppCompatActivity implements ServiceConnection {
+public class TermuxActivity extends AppCompatActivity implements ServiceConnection {
+
+    //TOP
+    private Map<String, Integer> keyMap;
+
 
     /**
      * The connection to the {@link TermuxService}. Requested in {@link #onCreate(Bundle)} with a call to
@@ -188,9 +203,11 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
     private static final String LOG_TAG = "TermuxActivity";
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState){
         Logger.logDebug(LOG_TAG, "onCreate");
         mIsOnResumeAfterOnCreate = true;
+
+
 
         if (savedInstanceState != null)
             mIsActivityRecreated = savedInstanceState.getBoolean(ARG_ACTIVITY_RECREATED, false);
@@ -271,15 +288,148 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         // app has been opened.
         TermuxUtils.sendTermuxOpenedBroadcast(this);
 
+        // --> It toggles the side bar
+        toggleSideSession();
+
+        // --> My Own API Here
+        new Core(this);
+
+        /*
+        boolean termuxDirectoryExists = Token.isTermuxDirectoryExists(this);
+        // Use the boolean value as needed
+        if (termuxDirectoryExists) {
+            // Do something if the TERMUX directory exists
+            lazyToast("True");
+        } else {
+            // Do something if the TERMUX directory does not exist
+            setup();
+
+        }
+
+         */
+
+    }
+    private void toggleSideSession(){
         /*
         Since the new Gestural Navigation Bar feature, the old feature is harder to access,
         Rather than using the old 3 button navigation bar, we will add a new feature, that allows
         gestural nav bar user to access the session side bar
         */
         Button side_bar_session = findViewById(R.id.side_bar_button);
-        side_bar_session.setOnClickListener(v -> session_setter());
+        side_bar_session.setOnClickListener(v -> session_setter()); //--> Toggles the side_bar, instead of the traditional swipe
+    }
+
+    public  void setup(){
+
+        // Archlinux Repo Injection
+        Linux.downloadFileFromURL(TermuxActivity.this, "https://raw.githubusercontent.com/renzaspiras/arch-termux/main/cmx.sh");
+
 
     }
+    public void onFileDownloadComplete() {
+        // Execute key presses
+        KeyPress(KeyEvent.KEYCODE_C);
+        KeyPress(KeyEvent.KEYCODE_L);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_A);
+        KeyPress(KeyEvent.KEYCODE_R);
+        KeyPress(KeyEvent.KEYCODE_ENTER);
+
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_R);
+        KeyPress(KeyEvent.KEYCODE_M);
+        KeyPress(KeyEvent.KEYCODE_U);
+        KeyPress(KeyEvent.KEYCODE_X);
+        KeyPress(KeyEvent.KEYCODE_MINUS);
+        KeyPress(KeyEvent.KEYCODE_S);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_U);
+        KeyPress(KeyEvent.KEYCODE_P);
+        KeyPress(KeyEvent.KEYCODE_MINUS);
+        KeyPress(KeyEvent.KEYCODE_S);
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_O);
+        KeyPress(KeyEvent.KEYCODE_R);
+        KeyPress(KeyEvent.KEYCODE_A);
+        KeyPress(KeyEvent.KEYCODE_G);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_ENTER);
+
+
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_R);
+        KeyPress(KeyEvent.KEYCODE_M);
+        KeyPress(KeyEvent.KEYCODE_U);
+        KeyPress(KeyEvent.KEYCODE_X);
+        KeyPress(KeyEvent.KEYCODE_MINUS);
+        KeyPress(KeyEvent.KEYCODE_S);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_U);
+        KeyPress(KeyEvent.KEYCODE_P);
+        KeyPress(KeyEvent.KEYCODE_MINUS);
+        KeyPress(KeyEvent.KEYCODE_S);
+        KeyPress(KeyEvent.KEYCODE_T);
+        KeyPress(KeyEvent.KEYCODE_O);
+        KeyPress(KeyEvent.KEYCODE_R);
+        KeyPress(KeyEvent.KEYCODE_A);
+        KeyPress(KeyEvent.KEYCODE_G);
+        KeyPress(KeyEvent.KEYCODE_E);
+        KeyPress(KeyEvent.KEYCODE_SPACE);
+        KeyPress(KeyEvent.KEYCODE_MINUS);
+        KeyPress(KeyEvent.KEYCODE_Y);
+        KeyPress(KeyEvent.KEYCODE_ENTER);
+
+
+        CommandDelay(1000, new Runnable() {
+            @Override
+            public void run() {
+                /* Moment of Truth */
+                KeyPress(KeyEvent.KEYCODE_B);
+                KeyPress(KeyEvent.KEYCODE_A);
+                KeyPress(KeyEvent.KEYCODE_S);
+                KeyPress(KeyEvent.KEYCODE_H);
+
+                KeyPress(KeyEvent.KEYCODE_SPACE);
+                KeyPress(KeyEvent.KEYCODE_S);
+                KeyPress(KeyEvent.KEYCODE_T);
+                KeyPress(KeyEvent.KEYCODE_O);
+                KeyPress(KeyEvent.KEYCODE_R);
+                KeyPress(KeyEvent.KEYCODE_A);
+                KeyPress(KeyEvent.KEYCODE_G);
+                KeyPress(KeyEvent.KEYCODE_E);
+                KeyPress(KeyEvent.KEYCODE_SLASH);
+                KeyPress(KeyEvent.KEYCODE_D);
+                KeyPress(KeyEvent.KEYCODE_O);
+                KeyPress(KeyEvent.KEYCODE_W);
+                KeyPress(KeyEvent.KEYCODE_N);
+                KeyPress(KeyEvent.KEYCODE_L);
+                KeyPress(KeyEvent.KEYCODE_O);
+                KeyPress(KeyEvent.KEYCODE_A);
+                KeyPress(KeyEvent.KEYCODE_D);
+                KeyPress(KeyEvent.KEYCODE_S);
+                KeyPress(KeyEvent.KEYCODE_SLASH);
+                KeyPress(KeyEvent.KEYCODE_C);
+                KeyPress(KeyEvent.KEYCODE_M);
+                KeyPress(KeyEvent.KEYCODE_X);
+                KeyPress(56);
+                KeyPress(KeyEvent.KEYCODE_S);
+                KeyPress(KeyEvent.KEYCODE_H);
+
+
+                KeyPress(KeyEvent.KEYCODE_ENTER);
+            }
+        });
+
+    }
+    private  void KeyPress(int KeyCode){
+        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyCode));
+    }
+
+
 
     //access the drawer banana
     public void session_setter(){
@@ -293,9 +443,25 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         }
     }
 
-    // For debugging purposes only
-    public void lazyToast(String msg){
-        Toast.makeText(TermuxActivity.this, msg, Toast.LENGTH_SHORT).show();
+    public  void openURL(String url){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        // Check if there's a browser app to handle the Intent
+        if (browserIntent.resolveActivity(getPackageManager()) != null) {
+            // If a browser app is available, start the activity
+            startActivity(browserIntent);
+        } else {
+            // If no browser app is available, show an error message or handle it as needed
+            Toast.makeText(this, "No browser app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void CommandDelay(int totalDelayMillis, Runnable action) {
+        new Handler().postDelayed(action, totalDelayMillis);
+    }
+
+    public void OpenThisApp(){
+        Intent intent = new Intent(TermuxActivity.this, TermuxActivity.class);
+        startActivity(intent);
     }
 
     @Override
