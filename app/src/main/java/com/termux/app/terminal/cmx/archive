@@ -1,0 +1,87 @@
+    private String expanded_path(String File_Name){
+        File_Name = "/storage/emulated/0/" + File_Name;
+        return File_Name;
+    }
+    public void First_Boot(Activity act, AppCompatActivity aca){
+        Filex.checkAndRequestPermission(act);
+        boolean Layer0 = Filex.doesFolderExist(expanded_path("TERMUX"));
+        if(Layer0){
+
+            linux.termux_setup_storage(aca);
+            linux.enter(aca);
+
+            linux.termux_setup_storage(aca);
+            linux.yes(aca);
+
+            linux.clear(aca);
+            linux.ls(aca);
+            boolean Layer1 = Filex.doesFileExist(expanded_path("Download/cmx.sh"));
+            if(Layer1){
+                linux.inject_cmx_utils(aca);
+            }
+            else {
+                Filex.downloadFileFromURL(act, "https://raw.githubusercontent.com/renzaspiras/arch-termux/main/cmx.sh");
+
+            }
+        }
+        else {
+            // Fix the Problem
+            linux.clear(aca);
+            linux.termux_setup_storage(aca);
+            linux.enter(aca);
+            Filex.createFolder(expanded_path("TERMUX"));
+            clk.CommandDelay(6000, new Runnable() {
+                @Override
+                public void run() {
+                    auto.Reload(act);
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Clock clk = new Clock();
+        Context cont = this;
+        Activity act = this;
+        AppCompatActivity aca = this;
+
+        clk.CommandDelay(2000, ()
+            -> new Core(cont, act, aca, mIsVisible));
