@@ -2,7 +2,6 @@ package com.termux.app.terminal.Inject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 

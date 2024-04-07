@@ -33,16 +33,12 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 
 import com.termux.R;
 import com.termux.app.api.file.FileReceiverActivity;
 import com.termux.app.terminal.Inject.Conduct;
 import com.termux.app.terminal.Inject.Core;
-import com.termux.app.terminal.Lazy.Automation;
-import com.termux.app.terminal.Lazy.Clock;
-import com.termux.app.terminal.Lazy.Messages;
+
 import com.termux.app.terminal.TermuxActivityRootView;
 import com.termux.app.terminal.TermuxTerminalSessionActivityClient;
 import com.termux.app.terminal.cmx.Linux;
