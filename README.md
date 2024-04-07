@@ -1,10 +1,9 @@
-# Termux ArchLinux Mobile Terminal (Under Development)
+# Termux Mobile Terminal (Under Development)
 
-This project aims to provide a mobile terminal environment based on Termux, with the capability to run ArchLinux within it. Please note that this project is still under active development and may not be stable for all use cases.
+This project aims to provide a mobile terminal environment based on Termux. Please note that this project is still under active development and may not be stable for all use cases.
 
 ## Features
 
-- Integration of ArchLinux within Termux environment.
 - Mobile-friendly terminal interface.
 - Access to a wide range of Linux command-line tools.
 - Extended features to enhance compatibility and reduce bugs on modern Android devices.
@@ -21,7 +20,7 @@ Contributions are welcome! Feel free to submit issues or pull requests to help i
 ## Disclaimer
 
 Please be aware that this project is still in the development phase and may contain bugs or incomplete features. Use it at your own risk.
-  
+
 ## Contact
 
 For any inquiries or feedback, feel free to contact the maintainers of this project.
@@ -38,7 +37,7 @@ This project is currently undergoing active development, with several new featur
   
 - **Personalization:** Addition of features to personalize the user experience, such as custom aliases, shortcuts, and profile configurations.
   
-- **New Non-Rooted Architecture:** Implementation of a new architecture to support running ArchLinux within Termux without requiring root access, providing a more secure and seamless experience for users.
+- **New Non-Rooted Architecture:** Implementation of a new architecture to support running within Termux without requiring root access, providing a more secure and seamless experience for users.
   
 - **New Source Code:** Refactoring and enhancement of the codebase to improve performance, maintainability, and scalability.
 
