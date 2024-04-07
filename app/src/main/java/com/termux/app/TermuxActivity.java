@@ -263,7 +263,8 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
 
         setTermuxTerminalViewAndClients();
 
-        setTerminalToolbarView(savedInstanceState);
+
+        //setTerminalToolbarView(savedInstanceState);
 
         setSettingsButtonView();
 
@@ -418,6 +419,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         }
     }
 
+    /*
     @Override
     public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
         Logger.logVerbose(LOG_TAG, "onSaveInstanceState");
@@ -426,6 +428,8 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         saveTerminalToolbarTextInput(savedInstanceState);
         savedInstanceState.putBoolean(ARG_ACTIVITY_RECREATED, true);
     }
+
+     */
 
 
 
@@ -576,6 +580,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
 
 
 
+    /*
     private void setTerminalToolbarView(Bundle savedInstanceState) {
         mTermuxTerminalExtraKeys = new TermuxTerminalExtraKeys(this, mTerminalView,
             mTermuxTerminalViewClient, mTermuxTerminalSessionActivityClient);
@@ -629,6 +634,8 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
             if (!textInput.isEmpty()) savedInstanceState.putString(ARG_TERMINAL_TOOLBAR_TEXT_INPUT, textInput);
         }
     }
+
+     */
 
 
 
@@ -923,14 +930,18 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
     }
 
 
+    /*
     public ViewPager getTerminalToolbarViewPager() {
         return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
     }
+    */
+
 
     public float getTerminalToolbarDefaultHeight() {
         return mTerminalToolbarDefaultHeight;
     }
 
+    /*
     public boolean isTerminalViewSelected() {
         return getTerminalToolbarViewPager().getCurrentItem() == 0;
     }
@@ -938,6 +949,8 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
     public boolean isTerminalToolbarTextInputViewSelected() {
         return getTerminalToolbarViewPager().getCurrentItem() == 1;
     }
+
+     */
 
 
     public void termuxSessionListNotifyUpdated() {
@@ -1064,7 +1077,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         }
 
         setMargins();
-        setTerminalToolbarHeight();
+        //setTerminalToolbarHeight();
 
         FileReceiverActivity.updateFileReceiverActivityComponentsState(this);
 

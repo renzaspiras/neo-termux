@@ -221,10 +221,13 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
         return mActivity.getProperties().isUsingCtrlSpaceWorkaround();
     }
 
+    /*
     @Override
     public boolean isTerminalViewSelected() {
         return mActivity.getTerminalToolbarViewPager() == null || mActivity.isTerminalViewSelected() || mActivity.getTerminalView().hasFocus();
     }
+
+     */
 
 
 
@@ -447,7 +450,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
                 // Writing mode:
                 case 'q':
                 case 'k':
-                    mActivity.toggleTerminalToolbar();
+                    //mActivity.toggleTerminalToolbar();
                     mVirtualFnKeyDown=false; // force disable fn key down to restore keyboard input into terminal view, fixes termux/termux-app#1420
                     break;
             }
