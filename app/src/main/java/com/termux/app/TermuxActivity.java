@@ -492,8 +492,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         Conduct.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-
-
     @Override
     public void onServiceDisconnected(ComponentName name) {
         Logger.logDebug(LOG_TAG, "onServiceDisconnected");
@@ -502,19 +500,12 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         finishActivityIfNotFinishing();
     }
 
-
-
-
-
-
     private void reloadProperties() {
         mProperties.loadTermuxPropertiesFromDisk();
 
         if (mTermuxTerminalViewClient != null)
             mTermuxTerminalViewClient.onReloadProperties();
     }
-
-
 
     private void setActivityTheme() {
         // Update NightMode.APP_NIGHT_MODE
