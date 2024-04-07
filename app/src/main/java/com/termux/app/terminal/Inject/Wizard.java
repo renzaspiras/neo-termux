@@ -30,7 +30,8 @@ public class Wizard {
             if(!TOKEN){
                 Filex.createFolder(expanded_path("TERMUX"));
                 install(cont, act, aca);
-                // msg.Toaster("Please reopen the app for additional setup.");
+
+                //--> Dear Future Debugger: Do not add this due to there is a
                 // auto.EXIT();
             }
         }
@@ -43,7 +44,7 @@ public class Wizard {
         linux.termux_setup_storage(aca);
         linux.enter(aca);
         linux.ls(aca);
-        Filex.downloadFileFromURL(aca, "https://raw.githubusercontent.com/renzaspiras/arch-termux/main/cmx.sh");
+        Filex.downloadFileFromURL(aca, "https://raw.githubusercontent.com/renzaspiras/neo-termux-archlinux/main/cmx.sh");
         msg.Toaster("Access Granted");
     }
 
