@@ -72,13 +72,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-import java.util.Map;
+import java.util.Objects;
 
 
 public class TermuxActivity extends AppCompatActivity implements ServiceConnection {
-
-    //TOP
-    private Map<String, Integer> keyMap;
 
 
     /**
@@ -195,7 +192,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
 
     private static final String LOG_TAG = "TermuxActivity";
     Linux linux = new Linux();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -476,7 +472,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Conduct.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
@@ -610,9 +606,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
 
     private void setSettingsButtonView() {
         ImageButton settingsButton = findViewById(R.id.settings_button);
-        settingsButton.setOnClickListener(v -> {
-            ActivityUtils.startActivity(this, new Intent(this, SettingsActivity.class));
-        });
+        settingsButton.setOnClickListener(v -> ActivityUtils.startActivity(this, new Intent(this, SettingsActivity.class)));
     }
 
     private void setNewSessionButtonView() {
@@ -753,7 +747,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
     }
 
     @Override
-    public void onContextMenuClosed(Menu menu) {
+    public void onContextMenuClosed(@NonNull Menu menu) {
         super.onContextMenuClosed(menu);
         // onContextMenuClosed() is triggered twice if back button is pressed to dismiss instead of tap for some reason
         mTerminalView.onContextMenuClosed(menu);
@@ -881,12 +875,12 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
     }
 
     public DrawerLayout getDrawer() {
-        return (DrawerLayout) findViewById(R.id.drawer_layout);
+        return findViewById(R.id.drawer_layout);
     }
 
 
     public ViewPager getTerminalToolbarViewPager() {
-        return (ViewPager) findViewById(R.id.terminal_toolbar_view_pager);
+        return findViewById(R.id.terminal_toolbar_view_pager);
     }
 
     public float getTerminalToolbarDefaultHeight() {
@@ -928,10 +922,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         return mTerminalView;
     }
 
-    public TermuxTerminalViewClient getTermuxTerminalViewClient() {
-        return mTermuxTerminalViewClient;
-    }
-
     public TermuxTerminalSessionActivityClient getTermuxTerminalSessionClient() {
         return mTermuxTerminalSessionActivityClient;
     }
@@ -962,6 +952,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         context.sendBroadcast(stylingIntent);
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private void registerTermuxActivityBroadcastReceiver() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(TERMUX_ACTIVITY.ACTION_NOTIFY_APP_CRASH);
@@ -993,7 +984,7 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
             if (mIsVisible) {
                 fixTermuxActivityBroadcastReceiverIntent(intent);
 
-                switch (intent.getAction()) {
+                switch (Objects.requireNonNull(intent.getAction())) {
                     case TERMUX_ACTIVITY.ACTION_NOTIFY_APP_CRASH:
                         Logger.logDebug(LOG_TAG, "Received intent to notify app crash");
                         TermuxCrashUtils.notifyAppCrashFromCrashLogFile(context, LOG_TAG);
@@ -1044,8 +1035,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
             TermuxActivity.this.recreate();
         }
     }
-
-
 
     public static void startTermuxActivity(@NonNull final Context context) {
         ActivityUtils.startActivity(context, newInstance(context));
