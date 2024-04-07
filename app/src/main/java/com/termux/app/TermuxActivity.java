@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +12,10 @@ import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,14 +72,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-
-import java.security.Key;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-import android.app.Activity;
-import android.content.Context;
-import android.view.KeyEvent;
 
 
 public class TermuxActivity extends AppCompatActivity implements ServiceConnection {
@@ -866,20 +855,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
             requestStoragePermission(true);
         }
     }
-
-    /*
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Logger.logVerbose(LOG_TAG, "onRequestPermissionsResult: requestCode: " + requestCode + ", permissions: "  + Arrays.toString(permissions) + ", grantResults: "  + Arrays.toString(grantResults));
-        if (requestCode == PermissionUtils.REQUEST_GRANT_STORAGE_PERMISSION) {
-            requestStoragePermission(true);
-        }
-    }
-
-     */
-
-
 
     public int getNavBarHeight() {
         return mNavBarHeight;
