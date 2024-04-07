@@ -44,13 +44,4 @@ public class Automation extends  AppCompatActivity{
         // Finish the current activity
         activity.finish();
     }
-
-    public void EXIT(Activity act) {
-        // Close all activities
-        //act.finishAffinity();
-
-        // Exit the app
-        //android.os.Process.killProcess(android.os.Process.myPid());
-    }
-
 }

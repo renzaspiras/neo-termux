@@ -38,7 +38,6 @@ import android.content.ClipboardManager;
 
 import com.termux.R;
 import com.termux.app.api.file.FileReceiverActivity;
-import com.termux.app.terminal.Inject.Conduct;
 import com.termux.app.terminal.Inject.Core;
 import com.termux.app.terminal.Lazy.Automation;
 import com.termux.app.terminal.Lazy.Clock;
@@ -331,7 +330,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         }
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -485,18 +483,10 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         // Update the {@link TerminalSession} and {@link TerminalEmulator} clients.
         mTermuxService.setTermuxTerminalSessionClient(mTermuxTerminalSessionActivityClient);
     }
-    Core core;
+
     public void  Injector(){
-        core = new Core(this, this, this);
+        new Core(this, this, this);
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Conduct.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
@@ -880,7 +870,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
         }
     }
 
-    /*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -889,8 +878,6 @@ public class TermuxActivity extends AppCompatActivity implements ServiceConnecti
             requestStoragePermission(true);
         }
     }
-
-     */
 
 
 
