@@ -2,6 +2,19 @@
 
 This project aims to provide a mobile terminal environment based on Termux. Please note that this project is still under active development and may not be stable for all use cases.
 
+**WARNING: Bug Alert in Utils**
+
+---
+
+**DO NOT BUILD AND INSTALL YET**
+
+---
+
+Please note that the current version of Utils contains a critical bug. Avoid building and installing it until further notice. We apologize for any inconvenience and appreciate your patience.
+
+Thank you.
+
+
 ## Features
 
 - Mobile-friendly terminal interface.
