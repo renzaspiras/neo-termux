@@ -219,8 +219,6 @@ clean {
     }
 }
 
-
-
 task downloadBootstraps() {
     doLast {
         def packageVariant = project.ext.packageVariant
