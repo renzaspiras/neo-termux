@@ -19,10 +19,10 @@ public class Wizard {
         boolean TOKEN = Filex.doesFileExist(expanded_path("TERMUX/TOKEN"));
 
         msg = new Messages(cont);
-        linux.clear(aca);
 
         if(TERMUX){
             if(!TOKEN){
+                linux.clear(aca); // Clear me not
                 install(cont, act, aca);
             }
         }
